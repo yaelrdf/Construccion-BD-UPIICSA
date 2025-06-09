@@ -1,16 +1,22 @@
--- Active: 1749188195060@@127.0.0.1@1521@XE@SYSTEM
---Create a plugable database
-CREATE PLUGGABLE DATABASE testpdb
-ADMIN USER yaeladmin IDENTIFIED BY "amROacoNagmE"
-FILE_NAME_CONVERT = ('pdbseed', 'testpdb');
+-- Step 1: Create the Pluggable Database
+CREATE PLUGGABLE DATABASE compraVenta
+ADMIN USER pdbadmin IDENTIFIED BY "adminpdb"
+FILE_NAME_CONVERT = ('pdbseed', 'compraVenta');
 
----EXECUTE Conected to the database, so get new conection
---Open Database on startup
-ALTER PLUGGABLE DATABASE testpdb OPEN;
-ALTER PLUGGABLE DATABASE testpdb SAVE STATE;
+-- Step 2: Open the Pluggable Database
+ALTER PLUGGABLE DATABASE compraVenta OPEN;
 
---Table space
-GRANT CONNECT, RESOURCE, DBA TO yaeladmin;
+-- Step 3: Set the PDB to auto-start
+ALTER PLUGGABLE DATABASE compraVenta SAVE STATE;
+
+-- Step 4: Connect to the Pluggable Database
+ALTER SESSION SET CONTAINER = compraVenta;
+
+-- Step 5: Create first admin user
+CREATE USER yaeladmin IDENTIFIED BY "102005";
+
+-- Grant necessary privileges to yaeladmin
+GRANT DBA TO yaeladmin;
+GRANT CONNECT, RESOURCE TO yaeladmin;
 GRANT CREATE SESSION TO yaeladmin;
-GRANT CREATE TABLE TO yaeladmin;
 GRANT UNLIMITED TABLESPACE TO yaeladmin;

@@ -3,20 +3,15 @@ services:
     image: mariadb:latest
     container_name: mariaDB-test
     restart: unless-stopped
-    networks:
-      - db
     volumes:
       - db-mariadb:/var/lib/mysql:rw
     ports:
       - "3307:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=mariadb
-      #- MYSQL_DATABASE=appwrite
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password    
 
-networks:
-  db:
 
 volumes:
   db-mariadb:

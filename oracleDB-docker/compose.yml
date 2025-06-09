@@ -7,7 +7,7 @@ services:
       - "1521:1521"
       - "5500:5500"
     environment:
-      - ORACLE_PWD=OuSTrILiVe
+      - ORACLE_PWD=nUqzF3J976hz
     volumes:
       - oracle-data:/opt/oracle/oradata # Path for persistent data
 volumes:

@@ -2,53 +2,43 @@
 -- Connect as SYSDBA to the Container Database (CDB)
 
 -- Step 1: Create the Pluggable Database
-CREATE PLUGGABLE DATABASE mypdb
-ADMIN USER pdbadmin IDENTIFIED BY "AdminPass123!"
-FILE_NAME_CONVERT = ('pdbseed', 'testpdb');
+CREATE PLUGGABLE DATABASE compraVenta
+ADMIN USER pdbadmin IDENTIFIED BY "adminpdb"
+FILE_NAME_CONVERT = ('pdbseed', 'compraVenta');
 
 -- Step 2: Open the Pluggable Database
-ALTER PLUGGABLE DATABASE mypdb OPEN;
+ALTER PLUGGABLE DATABASE compraVenta OPEN;
 
 -- Step 3: Set the PDB to auto-start
-ALTER PLUGGABLE DATABASE mypdb SAVE STATE;
+ALTER PLUGGABLE DATABASE compraVenta SAVE STATE;
 
 -- Step 4: Connect to the Pluggable Database
-ALTER SESSION SET CONTAINER = mypdb;
+ALTER SESSION SET CONTAINER = compraVenta;
 
 -- Step 5: Create first admin user
-CREATE USER admin1 IDENTIFIED BY "AdminUser1Pass!";
+CREATE USER yaeladmin IDENTIFIED BY "102005";
 
--- Grant necessary privileges to admin1
-GRANT DBA TO admin1;
-GRANT CONNECT, RESOURCE TO admin1;
-GRANT CREATE SESSION TO admin1;
-GRANT UNLIMITED TABLESPACE TO admin1;
+-- Grant necessary privileges to yaeladmin
+GRANT DBA TO yaeladmin;
+GRANT CONNECT, RESOURCE TO yaeladmin;
+GRANT CREATE SESSION TO yaeladmin;
+GRANT UNLIMITED TABLESPACE TO yaeladmin;
 
 -- Step 6: Create second admin user
-CREATE USER admin2 IDENTIFIED BY "AdminUser2Pass!";
+CREATE USER betsa18 IDENTIFIED BY "18ABCO04";
 
--- Grant necessary privileges to admin2
-GRANT DBA TO admin2;
-GRANT CONNECT, RESOURCE TO admin2;
-GRANT CREATE SESSION TO admin2;
-GRANT UNLIMITED TABLESPACE TO admin2;
+-- Grant necessary privileges to betsa18
+GRANT DBA TO betsa18;
+GRANT CONNECT, RESOURCE TO betsa18;
+GRANT CREATE SESSION TO betsa18;
+GRANT UNLIMITED TABLESPACE TO betsa18;
 
 -- Step 7: Verify the setup
-SELECT name, open_mode FROM v$pdbs WHERE name = 'MYPDB';
+SELECT name, open_mode FROM v$pdbs WHERE name = 'compraVenta';
 
 -- Show created users
 SELECT username, account_status, created FROM dba_users 
-WHERE username IN ('ADMIN1', 'ADMIN2', 'PDBADMIN');
+WHERE username IN ('yaeladmin', 'betsa18', 'PDBADMIN');
 
--- Optional: Create default tablespace for the PDB users
-CREATE TABLESPACE users_ts
-DATAFILE '/opt/oracle/oradata/ORCL/mypdb/users01.dbf'
-SIZE 100M
-AUTOEXTEND ON
-NEXT 10M
-MAXSIZE UNLIMITED;
 
--- Set default tablespace for new users
-ALTER DATABASE DEFAULT TABLESPACE users_ts;
-
-PROMPT 'Pluggable Database MYPDB created successfully with admin users!';
+PROMPT 'Pluggable Database compraVenta created successfully with admin users!';
