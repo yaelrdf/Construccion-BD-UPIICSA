@@ -1,0 +1,109 @@
+DROP DATABASE CompraVenta;
+CREATE DATABASE CompraVenta;
+
+CREATE TABLE Personal(
+  NumSS INT PRIMARY KEY,
+  Nombre VARCHAR(45),
+  ApePaterno VARCHAR(45),
+  ApeMaterno VARCHAR(45),
+  TelPersonal BIGINT,
+  TelCasa BIGINT,
+  FechaContrato DATE,
+  FecuenciaPago VARCHAR(15),
+  SueldoBase DECIMAL(7,2),
+  Puesto VARCHAR(10),
+  H_entrada TIME,
+  H_salida TIME
+);
+
+CREATE TABLE Clientes(
+  RFC VARCHAR(13) PRIMARY KEY,
+  Nombre VARCHAR(45),
+  ApePaterno VARCHAR(45),
+  ApeMaterno VARCHAR(45),
+  Calle VARCHAR(20),
+  Num INT,
+  Colonia VARCHAR(45),
+  CP INT,
+  Alcaldia VARCHAR(45)
+);
+
+CREATE TABLE Proveedores(
+  RFC VARCHAR(13) PRIMARY KEY,
+  NomEmpresa VARCHAR(45),
+  NombreRepresentante VARCHAR(45),
+  ApeP_Representante VARCHAR(45),
+  TelContacto BIGINT,
+  DiaPedido VARCHAR(15),
+  DiaEntrega VARCHAR(15),
+  TipoPago VARCHAR(45)
+);
+
+CREATE TABLE Productos(
+  CodProd INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  DescripL VARCHAR(45),
+  DescripC VARCHAR(20),
+  PrecioV DECIMAL(7,2),
+  Existencias INT,
+  StockMin INT,
+  StockMax INT,
+  Oferta SMALLINT
+);
+
+CREATE TABLE Ventas(
+  NumV INT PRIMARY KEY,
+  Fecha DATE,
+  Hora TIME,
+  Subtotal DECIMAL(7,2),
+  IVA DECIMAL(7,2),
+  Total DECIMAL(7,2),
+  Clientes_RFC VARCHAR(13),
+  Personal_NumSS INT,
+  FOREIGN KEY (Clientes_RFC) REFERENCES Clientes(RFC),
+  FOREIGN KEY (Personal_NumSS) REFERENCES Personal(NumSS)
+);
+
+CREATE TABLE productosv(
+  Cantidad INT,
+  PrecioV DECIMAL(7,2),
+  Subtotal_Prod DECIMAL(7,2),
+  Ventas_NumV INT,
+  Productos_CodProd INT,
+  PRIMARY KEY (Ventas_NumV, Productos_CodProd),
+  FOREIGN KEY (Ventas_NumV) REFERENCES Ventas(NumV),
+  FOREIGN KEY (Productos_CodProd) REFERENCES Productos(CodProd)
+);
+
+CREATE TABLE Compras(
+  NumC INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  FechaHoraP TIMESTAMP,
+  FechaHoraE TIMESTAMP,
+  TipoPago VARCHAR(15),
+  Subtotal DECIMAL(7,2),
+  IVA DECIMAL(7,2),
+  Total DECIMAL(7,2),
+  Proveedores_RFC VARCHAR(13),
+  FOREIGN KEY (Proveedores_RFC) REFERENCES Proveedores(RFC)
+);
+
+CREATE TABLE productosc(
+  Cantidad INT,
+  PrecioC DECIMAL(7,2),
+  Subtotal_Prod DECIMAL(7,2),
+  Compras_NumC INT,
+  Productos_CodProd INT,
+  PRIMARY KEY (Compras_NumC, Productos_CodProd),
+  FOREIGN KEY (Compras_NumC) REFERENCES Compras(NumC),
+  FOREIGN KEY (Productos_CodProd) REFERENCES Productos(CodProd)
+);
+  
+  CREATE TABLE Productos (
+  CodProd INT NOT NULL,
+  DescripL VARCHAR(45),
+  DescripC VARCHAR(20),
+  PrecioV DECIMAL(7,2),
+  Existencias INT,
+  StockMin INT,
+  StockMax INT,
+  Oferta SMALLINT
+);

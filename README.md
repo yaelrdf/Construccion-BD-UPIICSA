@@ -5,8 +5,9 @@ Repositorio de proyectos para Construccion de Bases de datos
 
 ## Indice
 
-#### Caso de estudio compra-venta
+### Caso de estudio compra-venta
 ---
+#### Creacion de tablas
 - [SQL original-ERRORES](Compra-venta/original.sql)
 - [SQL Corregido ORACLE](Compra-venta/CORRECCION-oracle.sql)
 
@@ -16,4 +17,7 @@ Repositorio de proyectos para Construccion de Bases de datos
 - Cambio de nombre de la tabla “ProductosCompras” por “ProductosC”
 - Adiciones a la tabla “Personal” 
 
+#### Insercion de datos
+ - [SQL original]('Compra-venta/Insercion de datos/original.sql')
+ - [SQL Corregido ORACLE]('Compra-venta/Insercion de datos/CORRECCION V2-oracle.sql')
 ---

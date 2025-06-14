@@ -1,4 +1,3 @@
--- SQLBook: Code
 CREATE TABLE Personal (
   NumSS NUMBER NOT NULL,
   Nombre NVARCHAR2(45),
