@@ -1,4 +1,4 @@
--- 1. Consulta que muestre: número de seguro social, nombre completo del empleado, 
+--Consulta mostrando: número de seguro social, nombre completo del empleado, 
 --    número de ventas registradas por empleado y monto en ventas registradas por empleado
 --    Se deben mostrar a todos los empleados registrados, hayan o no registrado ventas
 
@@ -12,8 +12,7 @@ LEFT JOIN Ventas v ON p.NumSS = v.Personal_NumSS
 GROUP BY p.NumSS, p.Nombre, p.ApePaterno, p.ApeMaterno
 ORDER BY p.NumSS;
 
--- 2. Crear una vista con la consulta anterior que se llame: "V_ventasXemp"
-
+--Vista con la consulta anterios
 CREATE VIEW V_ventasXemp AS
 SELECT 
     p.NumSS,

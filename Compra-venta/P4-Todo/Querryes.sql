@@ -48,7 +48,33 @@ ALTER TABLE Proveedores ADD Alcaldia VARCHAR2(20);
 ALTER TABLE Proveedores ADD Estado VARCHAR2(20);
 
 --Adicion de datos
-----------------------------pending
+UPDATE Proveedores 
+SET Calle = 'Recreo',
+    Num = 156,
+    CP = 08620,
+    Colonia = 'Barrio de los reyes',
+    Alcaldia = 'Iztacalco',
+    Estado = 'CDMX'
+WHERE RFC = 'TEP961122';
+
+UPDATE Proveedores 
+SET Calle = 'Ignacio Zaragoza',
+    Num = 856,
+    CP = 08500,
+    Colonia = 'Agricola Oriental',
+    Alcaldia = 'Iztacalco',
+    Estado = 'CDMX'
+WHERE RFC = 'CCF911030';
+
+UPDATE Proveedores 
+SET Calle = 'Porfirio Diaz',
+    Num = 16,
+    CP = 57460,
+    Colonia = 'Juarez Pantitlan',
+    Alcaldia = 'Nezahualcoyotl',
+    Estado = 'Edo.Mexico'
+WHERE RFC = 'CPC650101';
+COMMI
 
 --Consultas-vistas
 --7.Crear una consulta que muestre: 
