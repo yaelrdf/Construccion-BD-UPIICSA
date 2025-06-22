@@ -9,7 +9,6 @@ ALTER TABLE Ventas RENAME COLUMN HORA TO FECHAYHORA;
 ALTER TABLE Personal MODIFY Puesto NVARCHAR2(30);
 -- Correccion de falta de ortografia
 ALTER TABLE Personal RENAME COLUMN FrecuenciaPago TO FecuenciaPago;
-
 COMMIT;
 
 /*Insert en personal*/
@@ -113,4 +112,6 @@ INSERT INTO Productosc (Cantidad,PrecioC,Subtotal_Prod,Compras_NumC,Productos_Co
 INSERT INTO Productosc (Cantidad,PrecioC,Subtotal_Prod,Compras_NumC,Productos_CodProd) VALUES (20,17.00,340.00,1119,16);
 
 --Commit para reflejar los cambios
+
+DROP TABLE Productosc;
 COMMIT;
