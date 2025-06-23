@@ -1,0 +1,2 @@
+--Mostrar numero de clientes por alcalcia
+SELECT ALCALDIA, Count(ALCALDIA) AS CLIENTEALCALDIA FROM CLIENTE GROUP BY ALCALDIA;
